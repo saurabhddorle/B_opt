@@ -7,9 +7,9 @@ Contains Dataset file
 
 * 1_initial_break_schedule
 * 2_optimized_break_schedule
-* 3_adjust_remaining_time
+* 3_adjust_remaining_time   (Output in 'final3' variable)
 
-* 4_slot_adition_in_final_file ( execute only if required)
+* 4_slot_adition_in_final_file ( execute only if required)   (Output in 'df5' variable)
 
 ### Function files: ### 
 
