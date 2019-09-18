@@ -8,7 +8,7 @@
 2. 2_optimized_break_schedule
 3. 3_adjust_remaining_time
 
-*4) 4_slot_adition_in_final_file ( execute only if required)
+* 4_slot_adition_in_final_file ( execute only if required)
 
 ###Function files: 
 
