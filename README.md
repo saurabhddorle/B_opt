@@ -1,16 +1,16 @@
 # Break_optimization
 
-###Data folder: Contains Dataset file
+###Data folder: Contains Dataset file###
 
-###Sequence of executing files: 
+###Sequence of executing files: ###
 
-1. 1_initial_break_schedule
-2. 2_optimized_break_schedule
-3. 3_adjust_remaining_time
+* 1_initial_break_schedule
+* 2_optimized_break_schedule
+* 3_adjust_remaining_time
 
 * 4_slot_adition_in_final_file ( execute only if required)
 
-###Function files: 
+###Function files:### 
 
 1) fun_res2 : Function for getting minimum reach values
 
