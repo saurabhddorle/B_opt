@@ -80,7 +80,8 @@ for i in content_tape_id:
             res = low_reach(tmp)
             del res[2:]
             res.sort()# keeping only first two index numbers to add two breaks
-            
+            if res[0] == 0: # if break index is at start of movie, increament index
+                res[0] += 1
             
             Insert_row(res[0], movie, [i,0,0,0,0,0,360,0,0])
             movie.sort_index(axis=0, inplace = True) 
