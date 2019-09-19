@@ -17,8 +17,9 @@ import numpy as np
 #schedule = pd.read_csv(r"C:\Users\sdorle\Desktop\saurabh\Break Optimization\Data\One_day_schedule\\30June2019_V2.csv")
                        #,usecols = ['air_date', 'content_tape_id', 'content_name', 'Start_time', 'content_start_min'])
 # Original File
-schedule = pd.read_csv(r"C:\Users\sdorle\Desktop\saurabh\Break Optimization\Data\One_day_schedule\\one_day_schedule_modify.csv")
+#schedule = pd.read_csv(r"C:\Users\sdorle\Desktop\saurabh\Break Optimization\Data\One_day_schedule\\one_day_schedule_modify.csv")
 
+schedule = pd.read_csv("one_day.csv")
 # Removing empty entries
 schedule = schedule.loc[schedule['content_id']  != -1] 
 
@@ -91,10 +92,14 @@ locations = []
 for j in content_tape_id:
     loc = df3.content_tape_id.ne(j).idxmin()
     locations.append(loc)
+
+
+df3['Start_seconds'] = pd.Series()
+df3['Start_seconds'] = 0
     
 # adding start_sec column to dataframe
 for j in range(0, len(schedule)):
-    df3.at[locations[j], 'Start_seconds'] = schedule.at[j, 'start_seconds']
+    df3['Start_seconds'].iat[locations[j]] = schedule['start_seconds'].iat[j]
     # or
     #df3.at[locations[j], 'Start_sec'] = start_times[j]
     
@@ -106,6 +111,10 @@ df3['dow'] = schedule['dow']
 df3['month'] = df3['month'].ffill(axis = 0)
 df3['day'] = df3['day'].ffill(axis = 0)
 df3['dow'] = df3['dow'].ffill(axis = 0)
+
+df3['month'] = df3['month'].bfill(axis = 0)
+df3['day'] = df3['day'].bfill(axis = 0)
+df3['dow'] = df3['dow'].bfill(axis = 0)
 #==============================================================================
 
 
@@ -119,7 +128,7 @@ final_ = pd.DataFrame()
 # Calculatinf start time of segments based on movie start time
 for i in content_tape_id:
     #final = pd.DataFrame()
-    tmp = grp.get(i)
+    tmp = pd.DataFrame(grp.get(i))
     tmp = tmp.reset_index()
     tmp.drop(['index'], axis=1, inplace = True)
     
@@ -136,9 +145,10 @@ final_['hour'] = (final_['Start_seconds'] / 3600).apply(np.floor)
     
 #final_.to_csv("temp_one_day_with_segments.csv", index = False)
 
-
+'''
 # or
 cnxn = pyodbc.connect(dsn='ZEE_25june', uid='sdorle', pwd='sdd@123')
 
 cnxn.close()
 
+'''
